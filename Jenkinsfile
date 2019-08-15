@@ -7,7 +7,7 @@ pipeline {
             }
             success {
                 echo 'I succeeeded!'
-                ail to: 'gcrodrigues@uolinc.com',
+                fail to: 'gcrodrigues@uolinc.com',
                                              subject: "succeeeded Pipeline: ${currentBuild.fullDisplayName}",
                                              body: "succeeeded with ${env.BUILD_URL}"
             }
@@ -25,7 +25,7 @@ pipeline {
             }
         }
     stages {
-        stage('Deploy') {
+        stage('Build') {
             when {
                 branch 'dev'
             }
@@ -35,13 +35,6 @@ pipeline {
                     sh 'gradle'
                 }
             }
-            when {
-                branch 'master'
-            }
-            steps {
-                sh 'echo Passo 1 na master'
-            }
-
         }
         stage('Test') {
             steps {
@@ -50,10 +43,16 @@ pipeline {
                 }
              }
          }
-        stage('Deploy') {
+        stage('Deploy in dev') {
             steps {
-                input "Yes or No?"
+                sh 'echo "Deploy na dev"'
             }
         }
-   }
+        stage('Deploy in master') {
+            steps {
+                input "Yes or No?"
+                sh 'echo "Deploy na master"'
+            }
+        }
+    }
 }
