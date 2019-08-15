@@ -25,11 +25,11 @@ pipeline {
             }
         }
     stages {
-        stage('Deploy')
+        stage('Deploy') {
             when {
                 branch 'dev'
             }
-            steps{
+            steps {
                 retry(3) {
                     sh 'echo "Passo 1 na dev"'
                     sh 'gradle'
