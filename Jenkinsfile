@@ -5,7 +5,7 @@ pipeline {
             steps {
                 retry(3) {
                 sh 'echo "Passo 1"'
-                    sh 'pwd'
+                    sh 'gradle clean build'
                 }
             }
         }
