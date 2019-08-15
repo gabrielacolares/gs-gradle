@@ -41,7 +41,7 @@ pipeline {
             }
          }
      }
-    stage('Test') {
+    stage('Deploy') {
         steps {
            retry(3) {
               sh 'echo "Passo 1"'
