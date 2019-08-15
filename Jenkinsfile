@@ -4,8 +4,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 retry(3) {
-                    sh 'cd /test'
-                    sh './run.sh'
+                sh 'echo 'Passo 1''
+                    sh 'pwd'
                 }
             }
         }
