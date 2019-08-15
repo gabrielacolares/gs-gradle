@@ -33,24 +33,17 @@ pipeline {
                 }
             }
         }
-    stage('Test') {
-        steps {
-            retry(3) {
-               sh 'echo "Passo 1"'
-               sh 'gradle'
-            }
+        stage('Test') {
+            steps {
+                retry(3) {
+                   sh 'echo "Passo 2"'
+                }
+             }
          }
-     }
-    stage('Deploy') {
-        steps {
-            input "Yes or No?"
-        }
-        steps {
-           retry(3) {
-              sh 'echo "Passo 1"'
-              sh 'gradle'
+        stage('Deploy') {
+            steps {
+                input "Yes or No?"
             }
         }
-     }
    }
 }
