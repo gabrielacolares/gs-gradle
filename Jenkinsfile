@@ -44,6 +44,9 @@ pipeline {
              }
          }
         stage('Deploy in dev') {
+            when {
+            branch 'dev'
+            }
             steps {
                 sh 'echo "Deploy na dev"'
             }
