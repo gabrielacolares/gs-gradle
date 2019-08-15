@@ -43,6 +43,9 @@ pipeline {
      }
     stage('Deploy') {
         steps {
+            input "Yes or No?"
+        }
+        steps {
            retry(3) {
               sh 'echo "Passo 1"'
               sh 'gradle'
