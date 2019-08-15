@@ -7,6 +7,9 @@ pipeline {
             }
             success {
                 echo 'I succeeeded!'
+                ail to: 'gcrodrigues@uolinc.com',
+                                             subject: "succeeeded Pipeline: ${currentBuild.fullDisplayName}",
+                                             body: "succeeeded with ${env.BUILD_URL}"
             }
             unstable {
                 echo 'I am unstable :/'
