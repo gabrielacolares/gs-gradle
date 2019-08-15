@@ -25,7 +25,7 @@ pipeline {
             }
         }
     stages {
-        stage('Deploy') {
+        stage('Build') {
             steps {
                 retry(3) {
                 sh 'echo "Passo 1"'
@@ -33,5 +33,21 @@ pipeline {
                 }
             }
         }
-    }
+    stage('Test') {
+        steps {
+            retry(3) {
+               sh 'echo "Passo 1"'
+               sh 'gradle'
+            }
+         }
+     }
+    stage('Test') {
+        steps {
+           retry(3) {
+              sh 'echo "Passo 1"'
+              sh 'gradle'
+            }
+        }
+     }
+   }
 }
