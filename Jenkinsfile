@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    enviroment {
+    environment {
     BRANCH_DEV = 'dev'
     BRANCH_MASTER = 'master'
     }
@@ -47,11 +47,6 @@ pipeline {
                 }
              }
          }
-         post {
-            always {
-                junit 'build/reports/**/*.xml'
-            }
-         }
         stage('Deploy in dev') {
             when {
             branch 'dev'
@@ -66,5 +61,10 @@ pipeline {
                 sh 'echo "Deploy na master"'
             }
         }
+    }
+    post {
+        always {
+            junit 'build/reports/**/*.xml'
+         }
     }
 }
