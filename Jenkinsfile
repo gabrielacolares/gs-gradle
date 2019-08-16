@@ -7,18 +7,18 @@ pipeline {
             }
             success {
                 echo 'I succeeeded!'
-                fail to: 'gcrodrigues@uolinc.com',
-                                             subject: "succeeeded Pipeline: ${currentBuild.fullDisplayName}",
-                                             body: "succeeeded with ${env.BUILD_URL}"
+//                 fail to: 'gcrodrigues@uolinc.com',
+//                                              subject: "succeeeded Pipeline: ${currentBuild.fullDisplayName}",
+//                                              body: "succeeeded with ${env.BUILD_URL}"
             }
             unstable {
                 echo 'I am unstable :/'
             }
             failure {
                 echo 'I failed :('
-                mail to: 'gcrodrigues@uolinc.com',
-                             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                             body: "Something is wrong with ${env.BUILD_URL}"
+//                 mail to: 'gcrodrigues@uolinc.com',
+//                              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+//                              body: "Something is wrong with ${env.BUILD_URL}"
             }
             changed {
                 echo 'Things were different before...'
