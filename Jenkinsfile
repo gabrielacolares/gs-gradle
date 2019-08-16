@@ -5,29 +5,32 @@ pipeline {
     BRANCH_MASTER = 'master'
     }
     post {
-            always {
-                echo 'One way or another, I have finished'
-                deleteDir() /* clean up our workspace */
-            }
-            success {
-                echo 'I succeeeded!'
+        always {
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
+        }
+        success {
+            echo 'I succeeeded!'
 //                 fail to: 'gcrodrigues@uolinc.com',
 //                                              subject: "succeeeded Pipeline: ${currentBuild.fullDisplayName}",
 //                                              body: "succeeeded with ${env.BUILD_URL}"
-            }
-            unstable {
-                echo 'I am unstable :/'
-            }
-            failure {
-                echo 'I failed :('
+        }
+        unstable {
+           echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
 //                 mail to: 'gcrodrigues@uolinc.com',
 //                              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
 //                              body: "Something is wrong with ${env.BUILD_URL}"
-            }
-            changed {
-                echo 'Things were different before...'
-            }
         }
+        changed {
+            echo 'Things were different before...'
+        }
+        always {
+            unit 'build/reports/**/*.xml'
+        }
+    }
     stages {
         stage('Build') {
             when {
@@ -61,10 +64,5 @@ pipeline {
                 sh 'echo "Deploy na master"'
             }
         }
-    }
-    post {
-        always {
-            junit 'build/reports/**/*.xml'
-         }
     }
 }
