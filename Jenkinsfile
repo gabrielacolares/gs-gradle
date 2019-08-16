@@ -7,6 +7,7 @@ pipeline {
     post {
         always {
             echo 'One way or another, I have finished'
+            unit 'build/reports/**/*.xml'
             deleteDir() /* clean up our workspace */
         }
         success {
@@ -26,9 +27,6 @@ pipeline {
         }
         changed {
             echo 'Things were different before...'
-        }
-        always {
-            unit 'build/reports/**/*.xml'
         }
     }
     stages {
