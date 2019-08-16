@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    enviroment {
+    BRANCH_DEV = 'dev'
+    BRANCH_MASTER = 'master'
+    }
     post {
             always {
                 echo 'One way or another, I have finished'
@@ -42,6 +46,11 @@ pipeline {
                    sh 'echo "Passo 2"'
                 }
              }
+         }
+         post {
+            always {
+                junit 'build/reports/**/*.xml'
+            }
          }
         stage('Deploy in dev') {
             when {
